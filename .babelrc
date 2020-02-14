@@ -1,0 +1,23 @@
+/*
+    - transform jsx into normal javascript
+    - transform some of modern javascript into regular javascript (that the
+    browser can understand)
+
+    -- presets
+        - presets are what's going to define the types of transformations we
+        want to make with babel
+
+        -- @babel/preset-env
+            - this preset allows us to target specific environments (browsers)
+
+        -- @babel/preset-react
+            - this preset is going to take our JSX, transform it to normal
+            javascript
+*/
+
+{
+  "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+  ]
+}
