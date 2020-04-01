@@ -1,12 +1,13 @@
 /*
-    we use functional `setState` because we want to manipulate current state based on the previous state 
+    we use functional `setState` because we want to manipulate current state based on the previous state
 */
+
 import React from 'react'
 
 class Count extends React.Component {
   constructor(props) {
     super(props)
-    
+
     this.state = {
       count: 0
     }

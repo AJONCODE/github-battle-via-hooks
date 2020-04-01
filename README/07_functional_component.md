@@ -1,5 +1,17 @@
+if we comment `this.updateLanguage = this.updateLanguage.bind(this);`
+    -- we'll get `Uncaught TypeError: Cannot read property 'setState' of undefined`. 
+    And the reason for this is because when our `updateLanguage` method is invoked, 
+    because it's being passed as a reference to the `LanguagesNav` it is technically 
+    invoked there (i.e., inside LanguagesNav). So the `this` keyword in `updateLanguage` 
+    function is going to be same as to the `this` keyword in `LanguagesNav` which is 
+    undefined.
+
+if we are using `this.updateLanguage = this.updateLanguage.bind(this);`
+    -- we are making sure of the fact that when `updateLanguage` is called, then the `this` 
+    keyword is going to refer to the component instance of `Popular` and not of `LanguagesNav`.
+
+<!-- 
 import React from "react";
-import PropTypes from "prop-types";
 
 function LanguagesNav({ selected, onUpdateLanguage }) {
     const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Golang"];
@@ -22,11 +34,6 @@ function LanguagesNav({ selected, onUpdateLanguage }) {
     );
 }
 
-LanguagesNav.propTypes = {
-    selected: PropTypes.string.isRequired,
-    onUpdateLanguage: PropTypes.func.isRequired
-};
-
 export default class Popular extends React.Component {
     constructor(props) {
         super(props);
@@ -35,20 +42,6 @@ export default class Popular extends React.Component {
             selectedLanguage: "All"
         };
 
-        /*
-            if we comment `this.updateLanguage = this.updateLanguage.bind(this);`
-                -- we'll get `Uncaught TypeError: Cannot read property 'setState' of undefined`. 
-                And the reason for this is because when our `updateLanguage` method is invoked, 
-                because it's being passed as a reference to the `LanguagesNav` it is technically 
-                invoked there (i.e., inside LanguagesNav). So the `this` keyword in `updateLanguage` 
-                function is going to be same as to the `this` keyword in `LanguagesNav` which is 
-                undefined.
-        */
-        /*
-            if we are using `this.updateLanguage = this.updateLanguage.bind(this);`
-                -- we are making sure of the fact that when `updateLanguage` is called, then the `this` 
-                keyword is going to refer to the component instance of `Popular` and not of `LanguagesNav`.
-        */
         this.updateLanguage = this.updateLanguage.bind(this);
     }
 
@@ -69,4 +62,5 @@ export default class Popular extends React.Component {
             </React.Fragment>
         );
     }
-}
+} 
+-->

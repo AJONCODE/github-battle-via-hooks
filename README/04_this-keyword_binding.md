@@ -53,14 +53,18 @@ var youObj = {
 };
 
 sayNameMixin(meObj);
+sayNameMixin(youObj);
+
 meObj.sayName();
 
-sayNameMixin(youObj);
+
 /*
     #OUTPUT :
     Nainggolan:Manchester United
 */
+
 youObj.sayName();
+
 /*
     #OUTPUT :
     Sneijder:Manchester United
@@ -111,6 +115,9 @@ sneijder.manager.sayName();
   call
     -- “call” is a method on every function that allows you to invoke the
     function specifying in what context the function will be invoked.
+    -- in order to pass arguments to a function being invoked with ".call", you
+    pass them in one by one after you specify the first argument which is the
+    context
 */
 var sayName = function(){
   console.log(this.name + ":" + this.club);
@@ -141,6 +148,12 @@ sayInfo.call(player, formerClubs[0], formerClubs[1]);
 
 
 // apply
+/*
+  apply
+    -- ".apply" is the exact same thing as ".call", but instead of passing in
+    arguments one by one, you can pass in a single array and it will spread
+    each element in the array out for you as arguments to the function.
+*/
 sayInfo.apply(player, formerClubs);
 /*
     #OUTPUT :
@@ -189,6 +202,11 @@ var nainggolan = new Player('Manchester United', 'CMF', 14);
 */
 
 // window binding
+/*
+  window binding
+    -- if none of the other binding rules are met, then JavaScript will default
+    the "this" keyword to reference the window object.
+*/
 var sayPlayerName = function() {
   console.log(this.name);
 };

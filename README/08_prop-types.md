@@ -1,3 +1,6 @@
+propTypes can become very powerful on a long run because whether we install a package from npm or whether we build a component, if we want to figure out what props a specific component takes all we have to do is to look at propTypes.
+
+<!-- 
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -34,21 +37,6 @@ export default class Popular extends React.Component {
         this.state = {
             selectedLanguage: "All"
         };
-
-        /*
-            if we comment `this.updateLanguage = this.updateLanguage.bind(this);`
-                -- we'll get `Uncaught TypeError: Cannot read property 'setState' of undefined`. 
-                And the reason for this is because when our `updateLanguage` method is invoked, 
-                because it's being passed as a reference to the `LanguagesNav` it is technically 
-                invoked there (i.e., inside LanguagesNav). So the `this` keyword in `updateLanguage` 
-                function is going to be same as to the `this` keyword in `LanguagesNav` which is 
-                undefined.
-        */
-        /*
-            if we are using `this.updateLanguage = this.updateLanguage.bind(this);`
-                -- we are making sure of the fact that when `updateLanguage` is called, then the `this` 
-                keyword is going to refer to the component instance of `Popular` and not of `LanguagesNav`.
-        */
         this.updateLanguage = this.updateLanguage.bind(this);
     }
 
@@ -69,4 +57,5 @@ export default class Popular extends React.Component {
             </React.Fragment>
         );
     }
-}
+} 
+-->
