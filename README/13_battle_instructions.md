@@ -1,3 +1,45 @@
+<!--
+// Battle.js
+import React from 'react'
+import { FaUserFriends, FaFighterJet, FaTrophy } from 'react-icons/fa'
+
+function Instructions () {
+  return (
+    <div className='instructions-container'>
+      <h1 className='center-text header-lg'>
+        Instructions
+      </h1>
+      <ol className='container-sm grid center-text battle-instructions'>
+        <li>
+          <h3 className='header-sm'>Enter two Github users</h3>
+          <FaUserFriends className='bg-light' color='rgb(255, 191, 116)' size={140} />
+        </li>
+        <li>
+          <h3 className='header-sm'>Battle</h3>
+          <FaFighterJet className='bg-light' color='#727272' size={140} />
+        </li>
+        <li>
+          <h3 className='header-sm'>See the winners</h3>
+          <FaTrophy className='bg-light' color='rgb(255, 215, 0)' size={140} />
+        </li>
+      </ol>
+    </div>
+  )
+}
+
+export default class Battle extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Instructions />
+      </React.Fragment>
+    )
+  }
+}
+-->
+
+<!--
+// CSS added onto file index.css
 html, body, #app {
   margin: 0;
   height: 100%;
@@ -104,17 +146,17 @@ li {
   border-radius: 3px;
 }
 
-.card {
+.repo {
   margin: 10px 0;
   width: 250px;
   padding: 20px;
 }
 
-.card a {
+.repo a {
   text-decoration: none;
 }
 
-.card img {
+.repo img {
   margin-bottom: 8px;
 }
 
@@ -141,100 +183,4 @@ li {
   padding: 40px;
   border-radius: 3px;
 }
-
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.player {
-  flex: 1;
-  margin: 0 20px;
-  padding: 10px;
-}
-
-.player-label {
-  font-size: 20px;
-  margin: 5px 0;
-  font-weight: 300;
-}
-
-.player-inputs input {
-  padding: 8px;
-  font-size: 16px;
-  flex: 2;
-  border-radius: 3px;
-  border: none;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.player-inputs .input-light {
-  background: rgba(0, 0, 0, 0.02);
-}
-
-.player-inputs button {
-  flex: 1;
-  margin-left: 10px;
-}
-
-.btn {
-  padding: 10px;
-  text-decoration: uppercase;
-  letter-spacing: .25em;
-  border-radius: 3px;
-  border: none;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
-  max-width: 200px;
-}
-
-.dark-btn {
-  color: #e6e6e6;
-  background: #141414;
-}
-
-.dark-btn:disabled {
-  background: #f2f2f2;
-  color: #c7c7c7;
-}
-
-.players-container {
-  margin: 100px 0;
-}
-
-.avatar-small {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-}
-
-.player-info {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  font-size: 20px;
-  padding: 10px;
-}
-
-.player-info .link {
-  margin-left: 10px;
-}
-
-.btn-space {
-  margin: 40px auto;
-}
-
-.error {
-  color: #ff1616;
-  font-size: 20px;
-  margin: 50px 0;
-}
+-->
