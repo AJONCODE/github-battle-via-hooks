@@ -1,3 +1,49 @@
+***
+There are a few downsides of higher order component specifically the naming collision.
+For this we use render props as oppose to higher order component.
+***
+
+*
+delete withHover.js
+*
+
+# Hover.js #
+<!--
+import React from 'react'
+
+export default class Hover extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      hovering: false,
+    }
+
+    this.mouseOver = this.mouseOver.bind(this)
+    this.mouseOut = this.mouseOut.bind(this)
+  }
+  mouseOver() {
+    this.setState({
+      hovering: true
+    })
+  }
+  mouseOut() {
+    this.setState({
+      hovering: false
+    })
+  }
+  render () {
+    return (
+      <div onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
+        {this.props.children(this.state.hovering)}
+      </div>
+    )
+  }
+}
+-->
+
+# Tooltip.js #
+<!--
 import React from 'react'
 import PropTypes from 'prop-types'
 import Hover from './Hover'
@@ -40,3 +86,4 @@ export default function Tooltip ({ text, children }) {
 Tooltip.propTypes = {
   text: PropTypes.string.isRequired,
 }
+-->
