@@ -1,27 +1,40 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import './index.css'
-
 import Popular from './components/Popular'
 import Battle from './components/Battle'
-
-function showWarning() {
-    return true
-}
+import { ThemeProvider } from './contexts/theme'
+import Nav from './components/Nav'
 
 class App extends React.Component {
-    render() {
-        return (
-            <div className='container'>
-                {/* <Popular /> */}
-                <Battle />
-            </div>
-        )
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      theme: 'light',
+      toggleTheme: () => {
+        this.setState(({ theme }) => ({
+          theme: theme === 'light' ? 'dark' : 'light'
+        }))
+      }
     }
+  }
+  render() {
+    return (
+      <ThemeProvider value={this.state}>
+        <div className={this.state.theme}>
+          <div className='container'>
+            <Nav />
+
+            <Popular  />
+          </div>
+        </div>
+      </ThemeProvider>
+    )
+  }
 }
 
 ReactDOM.render(
-    <App />, // React Element
-    document.getElementById('app') // Where to render the Element to
+  <App />,
+  document.getElementById('app')
 )

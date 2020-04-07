@@ -1,3 +1,73 @@
+# app/components/Nav.js #
+<!--
+import React from 'react'
+import { ThemeConsumer } from '../contexts/theme'
+
+export default function Nav () {
+  return (
+    <ThemeConsumer>
+      {({ theme, toggleTheme }) => (
+        <nav className='row space-between'>
+          <button
+            style={{fontSize: 30}}
+            className='btn-clear'
+            onClick={toggleTheme}
+          >
+            {theme === 'light' ? '🔦' : '💡'}
+          </button>
+        </nav>
+      )}
+    </ThemeConsumer>
+  )
+}
+-->
+
+# app/index.js #
+<!--
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import Popular from './components/Popular'
+import Battle from './components/Battle'
+import { ThemeProvider } from './contexts/theme'
+import Nav from './components/Nav'
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      theme: 'light',
+      toggleTheme: () => {
+        this.setState(({ theme }) => ({
+          theme: theme === 'light' ? 'dark' : 'light'
+        }))
+      }
+    }
+  }
+  render() {
+    return (
+      <ThemeProvider value={this.state}>
+        <div className={this.state.theme}>
+          <div className='container'>
+            <Nav />
+
+            <Battle />
+          </div>
+        </div>
+      </ThemeProvider>
+    )
+  }
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+)
+-->
+
+# app/index.js #
+<!--
 html, body, #app {
   margin: 0;
   height: 100%;
@@ -244,23 +314,4 @@ li {
   font-size: 20px;
   margin: 50px 0;
 }
-
-.bg-dark {
-  background: rgb(36, 40, 42);
-  border-radius: 3px;
-}
-
-.player-inputs .input-dark {
-  color: #DADADA;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.light-btn {
-  color: #000;
-  background: #aaa8a8;
-}
-
-.light-btn:disabled {
-  background: #292929;
-  color: #4a4a4a;
-}
+-->
