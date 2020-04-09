@@ -13,11 +13,20 @@
         -- @babel/preset-react
             - this preset is going to take our JSX, transform it to normal
             javascript
+
+    -- plugins
+        -- @babel/plugin-proposal-class-properties
+            - when babel transforms react as well as our modern javascript code, 
+            its also gonna give us import for the class properties
+
 */
 
 {
   "presets": [
       "@babel/preset-env",
       "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
   ]
 }
