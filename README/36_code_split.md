@@ -1,3 +1,46 @@
+# npm install --save-dev @babel/plugin-syntax-dynamic-import #
+
+# .babelrc #
+<!--
+/*
+    - transform jsx into normal javascript
+    - transform some of modern javascript into regular javascript (that the
+    browser can understand)
+
+    -- presets
+        - presets are what's going to define the types of transformations we
+        want to make with babel
+
+        -- @babel/preset-env
+            - this preset allows us to target specific environments (browsers)
+
+        -- @babel/preset-react
+            - this preset is going to take our JSX, transform it to normal
+            javascript
+
+    -- plugins
+        -- @babel/plugin-proposal-class-properties
+            - when babel transforms react as well as our modern javascript code, 
+            its also gonna give us import for the class properties
+        -- @babel/plugin-syntax-dynamic-import
+            - its gonna allow us to have dynamic imports in our application
+
+*/
+
+{
+  "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import"
+  ]
+}
+-->
+
+# app/index.js #
+<!--
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
@@ -47,3 +90,4 @@ ReactDOM.render(
   <App />,
   document.getElementById('app')
 )
+-->

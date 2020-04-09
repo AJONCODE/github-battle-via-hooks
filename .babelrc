@@ -18,6 +18,8 @@
         -- @babel/plugin-proposal-class-properties
             - when babel transforms react as well as our modern javascript code, 
             its also gonna give us import for the class properties
+        -- @babel/plugin-syntax-dynamic-import
+            - its gonna allow us to have dynamic imports in our application
 
 */
 
@@ -27,6 +29,7 @@
       "@babel/preset-react"
   ],
   "plugins": [
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import"
   ]
 }
