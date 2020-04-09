@@ -1,3 +1,11 @@
+# _redirects #
+<!--
+/*  /index.html  200
+-->
+
+# npm install --save-dev copy-webpack-plugin #
+# webpack.config.js #
+<!--
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
@@ -28,3 +36,4 @@ module.exports = {
         historyApiFallback: true
     }
 }
+-->
