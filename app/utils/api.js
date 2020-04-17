@@ -2,81 +2,77 @@ const id = "YOUR_CLIENT_ID"
 const sec = "YOUR_SECRET_ID"
 const params = `?client_id=${id}&client_secret=${sec}`
 
-function getProfile(username) {
-    return fetch(`https://api.github.com/users/${username}${params}`)
-        .then((res) => res.json())
-        .then((profile) => {
-            if (profile.message) {
-                throw new Error(getErrorMsg(profile.message, username))
-            }
+function getErrorMsg (message, username) {
+  if (message === 'Not Found') {
+    return `${username} doesn't exist`
+  }
 
-            return profile
-        })
+  return message
 }
 
-function getRepos(username) {
-    return fetch(`https://api.github.com/users/${username}/repos${params}&per_page=100`)
-        .then((res) => res.json())
-        .then((repos) => {
-            if (repos.message) {
-                throw new Error(getErrorMsg(repos.message, username))
-            }
+function getProfile (username) {
+  return fetch(`https://api.github.com/users/${username}${params}`)
+    .then((res) => res.json())
+    .then((profile) => {
+      if (profile.message) {
+        throw new Error(getErrorMsg(profile.message, username))
+      }
 
-            return repos
-        })
+      return profile
+    })
 }
 
-function getStarCount(repos) {
-    /*
-        - reduce ?
-          for each repo iteration count will be the result for count starting from 0. 
-          And in every iteration count will add stargazers_count (from repos in every iteration)
-    */
-    return repos.reduce((count, { stargazers_count }) => count + stargazers_count, 0)
+function getRepos (username) {
+  return fetch(`https://api.github.com/users/${username}/repos${params}&per_page=100`)
+    .then((res) => res.json())
+    .then((repos) => {
+      if (repos.message) {
+        throw new Error(getErrorMsg(repos.message, username))
+      }
+
+      return repos
+    })
 }
 
-
-function calculateScore(followers, repos) {
-    return followers + getStarCount(repos)
+function getStarCount (repos) {
+  return repos.reduce((count, { stargazers_count }) => count + stargazers_count , 0)
 }
 
-function getUserData(player) {
-    return Promise.all([
-        getProfile(player),
-        getRepos(player)
-    ]).then(([profile, repos]) => ({
-        profile,
-        score: calculateScore(profile.followers, repos)
-    }))
+function calculateScore (followers, repos) {
+  return (followers * 3) + getStarCount(repos)
 }
 
-function sortPlayers(players) {
-    return players.sort((a, b) => b.score - a.score)
+function getUserData (player) {
+  return Promise.all([
+    getProfile(player),
+    getRepos(player)
+  ]).then(([ profile, repos ]) => ({
+    profile,
+    score: calculateScore(profile.followers, repos)
+  }))
 }
 
-export function battle(players) {
-    return Promise.all([
-        getUserData(players[0]),
-        getUserData(players[1])
-    ]).then((results) => sortPlayers(results))
+function sortPlayers (players) {
+  return players.sort((a, b) => b.score - a.score)
 }
 
-export function fetchPopularRepos(language) {
-    const endpoint = window.encodeURI(`https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`)
-
-    return fetch(endpoint)
-        .then((res) => res.json())
-        .then((data) => {
-            if (!data.items) {
-                throw new Error(data.message)
-            }
-
-            return data.items
-        })
+export function battle (players) {
+  return Promise.all([
+    getUserData(players[0]),
+    getUserData(players[1])
+  ]).then((results) => sortPlayers(results))
 }
 
-/*
-    The reason that we are not catching the error in here (i.e., api.js) is because we can't really do anything as far as ui is concerned from here.
-    So what we do is we throw an error and we invoke the function, we can add our '.catch' onto there. And if there's a problem, then we'll be in the
-    UI layer and we can then update the UI based on that problem.
-*/
+export function fetchPopularRepos (language) {
+  const endpoint = window.encodeURI(`https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`)
+
+  return fetch(endpoint)
+    .then((res) => res.json())
+    .then((data) => {
+      if (!data.items) {
+        throw new Error(data.message)
+      }
+
+      return data.items
+    })
+}
